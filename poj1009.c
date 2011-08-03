@@ -65,12 +65,20 @@ int main()
         n = 0;
         total = 0;
         memset(input, 0, sizeof(int)*N*2);
-        while ( scanf("%d %d", &input[n][0], &length), input[n][0], length )
+        memset(output, 0, sizeof(int)*N*9*2);
+        while ( scanf("%d %d", &input[n][0], &length) == 2 )
         {
             input[n][1] = total;
             total += length;
+            if ( input[n][0] == 0 && length == 0 )
+                break;
             n++;
         }
+        
+//        printf("input:\n");
+//        for ( i = 0; i <= n; i++ )
+//            printf("%d, %d\n", input[i][0], input[i][1]);
+//        system("PAUSE");
         
         height = total / width;
         count = 0;
@@ -89,8 +97,18 @@ int main()
                     count++;
                 }
         }
+
+//        printf("unsorted:\n");
+//        for ( i = 0; i < count; i++ )
+//            printf("%d, %d\n", output[i][0], output[i][1]);
+//        system("PAUSE");
         
         qsort(output, count, sizeof(int)*2, cmp);
+        
+//        printf("sorted:\n");
+//        for ( i = 0; i < count; i++ )
+//            printf("%d, %d\n", output[i][0], output[i][1]);
+//        system("PAUSE");
         
         printf("%d\n", width);
         for ( i = 0, j = 0; i < count; i++ )
